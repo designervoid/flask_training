@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
-from app.forms import LoginForm
+from app.forms import LoginForm, FeedbackForm
 
 
 @app.route('/')
@@ -18,3 +18,14 @@ def login():
               f'Remember me: {form.remember_me.data}')
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign in', form=form)
+
+
+@app.route('/feedback', methods=['GET', 'POST'])
+def feedback():
+    form = FeedbackForm()
+    if form.validate_on_submit():
+        flash(f'Login requested for Username:{form.name.data}, '
+              f'Password: {form.last_name.data}, '
+              f'Remember me: {form.text.data}')
+        return redirect(url_for('index'))
+    return render_template('feedback.html', title='Feedback', form=form)
