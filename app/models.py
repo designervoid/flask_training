@@ -3,7 +3,7 @@ from app import db
 
 
 class User(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(64), index=True, unique=True)
@@ -13,8 +13,8 @@ class User(db.Model):
         return f'<User {self.username}>'
 
 
-class Posts(db.Model):
-    __tablename__ = 'posts'
+class Post(db.Model):
+    __tablename__ = 'post'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
